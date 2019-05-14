@@ -1,6 +1,7 @@
 package assignment1;
 
 import java.util.Date;
+import java.util.Set;
 
 public class Student {
 
@@ -8,7 +9,8 @@ public class Student {
     private Address address;
     private Date date;
     private String IDnumber;
-    private String Courses;
+    //private String Courses;
+    Set<String> courses = new courses<String>();// Array
 
     public Student(Name name, Address address, Date date, String IDnumber, String Courses) {
         this.name = name;
