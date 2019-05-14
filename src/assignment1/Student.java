@@ -1,7 +1,7 @@
 package assignment1;
 
 import java.util.Date;
-import java.util.Set;
+
 
 public class Student {
 
@@ -10,14 +10,14 @@ public class Student {
     private Date date;
     private String IDnumber;
     //private String Courses;
-    Set<String> courses = new courses<String>();// Array
+    //private String[] courseArray = new String[5]; 
 
-    public Student(Name name, Address address, Date date, String IDnumber, String Courses) {
+    public Student(Name name, Address address, Date date, String IDnumber/*, String Courses[]*/) {
         this.name = name;
         this.address = address;
         this.date = date;
         this.IDnumber = IDnumber;
-        this.Courses = Courses;
+        //this.courseArray = Courses;
     }
 
     public Name getName() {
@@ -36,15 +36,23 @@ public class Student {
         return IDnumber;
     }
 
-    public String getCourses() { //-------------
-        return Courses;
-    }
+  //  public String[] getCourseArray() {
+       // return courseArray;
+   // }
+    
 
     public void addCourse() {  //---------------
-
+        
     }
 
     public void dropCourse() { //---------------
 
     }
+
+    @Override
+    public String toString() {
+        return "Student{" + "name=" + name + ", address=" + address + ", date=" + date + ", IDnumber=" + IDnumber/* + ", courseArray=" + courseArray + '}'*/;
+    }
+    
+    
 }
