@@ -10,14 +10,14 @@ public class Student {
     private Date date;
     private String IDnumber;
     //private String Courses;
-    //private String[] courseArray = new String[5]; 
+    private String[] courseArray = new String[5]; 
 
-    public Student(Name name, Address address, Date date, String IDnumber/*, String Courses[]*/) {
+    public Student(Name name, Address address, Date date, String IDnumber, String Courses[]) {
         this.name = name;
         this.address = address;
         this.date = date;
         this.IDnumber = IDnumber;
-        //this.courseArray = Courses;
+        this.courseArray = Courses;
     }
 
     public Name getName() {
@@ -36,9 +36,31 @@ public class Student {
         return IDnumber;
     }
 
-  //  public String[] getCourseArray() {
-       // return courseArray;
-   // }
+    public String getCourseArray() {
+        // return courseArray;
+        
+        String arrayCounter = "";
+        int arraySize = courseArray.length;
+        
+        
+        for (int i = 0; i < arraySize; i++) {
+            
+            if(i == arraySize - 1) {
+               arrayCounter = arrayCounter + courseArray[i];
+            }
+            else {
+                arrayCounter = arrayCounter + courseArray[i] + ",";
+            }
+            // 0 1 2 
+            
+            
+        }
+        
+        arrayCounter = arrayCounter + ".";  
+        
+        
+        return arrayCounter;
+    }
     
 
     public void addCourse() {  //---------------
@@ -48,11 +70,5 @@ public class Student {
     public void dropCourse() { //---------------
 
     }
-
-    @Override
-    public String toString() {
-        return "Student{" + "name=" + name + ", address=" + address + ", date=" + date + ", IDnumber=" + IDnumber/* + ", courseArray=" + courseArray + '}'*/;
-    }
-    
-    
+   
 }
