@@ -15,6 +15,8 @@ public class Assignment1 {
         
         stud1.addCourse("ASS4050");
         stud1.addCourse("BOY4545");
+        //stud1.dropCourse("ASS4050");
+        // stud1.addCourse("CUL9090");
         
         System.out.println("The information added is:\n" + "Name: " + stud1.getName().getFirstName() + " " + stud1.getName().getLastName() + "\n"
         + "Address: " + stud1.getAddress().getStreet() + " " + stud1.getAddress().getCity() + " " + stud1.getAddress().getState() + " " + stud1.getAddress().getZip() + "\n"
