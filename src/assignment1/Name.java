@@ -1,22 +1,27 @@
 package assignment1;
 
-public class Name {
+public class Name
+{
+
     // Data fields.
     private String firstName;
     private String lastName;
-    
+
     // Constructor.
-    public Name(String firstName, String lastName) {
+    public Name(String firstName, String lastName)
+    {
         this.firstName = firstName;
         this.lastName = lastName;
     }
-    
+
     // Getters.
-    public String getFirstName() {
+    public String getFirstName()
+    {
         return firstName;
     }
 
-    public String getLastName() {
+    public String getLastName()
+    {
         return lastName;
     }
 
