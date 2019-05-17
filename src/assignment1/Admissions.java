@@ -18,6 +18,10 @@ public class Admissions
     {
         list.add(std);
     }
+
+    
+    
+    
     
     
 }
