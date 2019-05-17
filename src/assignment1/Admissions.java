@@ -19,6 +19,11 @@ public class Admissions
         list.add(std);
     }
 
+    public ArrayList<Student> getList()
+    {
+        return list;
+    }
+
     
     
     
