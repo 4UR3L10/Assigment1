@@ -18,9 +18,10 @@ public class Assignment1
         Date date = new Date();
         
         // Creating Admission object.
-        Admissions admiss = new Admissions();
+        Admissions admiss = new Admissions();   
         
-        ArrayList list = admiss.getList();
+        
+       
                 
         /*        
         stud1.addCourse("ASS4050");
@@ -38,20 +39,35 @@ public class Assignment1
         {
             // Info message.
             int choice = getData.getInt("\tAdmission Department\n" + dateFormat.format(date) + "\n" + 
-                      "\nEnter a number:"
-                    + "\n[1] Show Students\n"
-                    + "  [2] Add Student\n"
-                    + "  [3] Drop Student\n"
-                    + "  [4] Search Student\n"
-                    + "  [5] Add Course\n"
-                    + "  [6] Remove Course\n"
-                    + "  [7] Exit");
+                      "\nEnter a number:\n"
+                    + "[1] Show Students\n"
+                    + "[2] Add Student\n"
+                    + "[3] Drop Student\n"
+                    + "[4] Search Student\n"
+                    + "[5] Add Course\n"
+                    + "[6] Remove Course\n"
+                    + "[7] Exit");
        
             switch (choice)
             {
                 // Show Students.
                 case 1:
-                    JOptionPane.showMessageDialog(null, "Not yet developed");
+                    // JOptionPane.showMessageDialog(null, "Not yet developed");
+                    ArrayList list = admiss.getList();
+                    
+                    int i = 0;
+                    int length = list.size();
+                    String student = "";
+                    
+                    while (i < length)
+                    {
+                      list.get(i);
+                      student = student + "Name:" + admiss.getStud().getName().getFirstName();
+                      i++;
+                       
+                    }
+                    
+                    JOptionPane.showMessageDialog(null,student);
                     break;
                 
                 // Add Students.
@@ -85,27 +101,31 @@ public class Assignment1
                     Student stud = new Student(name, address, date, studID, courseArray);
                     
                     // Adding the student object to the arrayList.                    
-                    admiss.add(stud);                  
-                                      
+                    admiss.add(stud);          
                     
                     break;
                 
+                // Drop Student.
                 case 3:
                     JOptionPane.showMessageDialog(null, "Not yet developed");
                     break;
                     
+                // Search Student.    
                 case 4:
                     JOptionPane.showMessageDialog(null, "Not yet developed");
                     break;
                     
+                // Add Course.    
                 case 5:
                     JOptionPane.showMessageDialog(null, "Not yet developed");
                     break;
-                    
+                
+                // Remove Course.    
                 case 6:
                     JOptionPane.showMessageDialog(null, "Not yet developed");
                     break;
                   
+                // Exit Program.    
                 case 7:    
                     keepLoop = false;    
                     break;

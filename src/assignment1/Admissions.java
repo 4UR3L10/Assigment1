@@ -24,6 +24,13 @@ public class Admissions
         return list;
     }
 
+    public Student getStud()
+    {
+        return stud;
+    }
+    
+    
+
     
     
     

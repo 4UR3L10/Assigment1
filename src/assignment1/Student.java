@@ -101,6 +101,5 @@ public class Student
 
         // If it not found then not found message.
         System.out.println("*The course was not found.*\n");
-    }
-
+    }    
 }
