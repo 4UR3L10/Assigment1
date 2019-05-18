@@ -220,22 +220,116 @@ public class Assignment1
                                         // Geeting data.
                                         studentObj = admiss.getStud();
                                         index = admiss.getIndex();
-                                        
+
                                         // Getting and setting the NEW student Lastname.
                                         tempID = getData.getWord("Enter the new student lastname:");
                                         studentObj.getName().setLastName(tempID);
-                                        
+
                                         // Display feedback.                                     
-                                        JOptionPane.showMessageDialog(null, "The new student lastname " + (tempID = studentObj.getName().getLastName())  + " was added succesfully.");
-                                        
-                                        break;    
+                                        JOptionPane.showMessageDialog(null, "The new student lastname " + (tempID = studentObj.getName().getLastName()) + " was added succesfully.");
+
+                                        break;
+
+                                    default:
+                                        JOptionPane.showMessageDialog(null, "Enter a valid option");    
                                 }
                                 break;
                              
                             // Address.    
                             case 3:
-                                
-                                break;
+                                // Display menu and getting input.
+                                tempChoice = getData.getInt("Select the information that you want to update:\n [1] Full address \n [2] Street \n [3] City \n [4] State \n [5] ZipCode");
+
+                                switch (tempChoice)
+                                {
+                                    // Full address.
+                                    case 1:
+                                        // Geeting data.
+                                        studentObj = admiss.getStud();
+                                        index = admiss.getIndex();
+
+                                        // Getting and setting the NEW student Full address.
+                                        tempID = getData.getWord("Enter the new student street:");
+                                        studentObj.getAddress().setStreet(tempID);
+                                        tempID = getData.getWord("Enter the new student city:");
+                                        studentObj.getAddress().setCity(tempID);
+                                        tempID = getData.getWord("Enter the new student state:");
+                                        studentObj.getAddress().setState(tempID);
+                                        tempID = getData.getWord("Enter the new student zip code:");
+                                        studentObj.getAddress().setZip(tempID);
+
+                                        // Display feedback.                                     
+                                        JOptionPane.showMessageDialog(null, "The new student address " + (tempID = studentObj.getAddress().getStreet() + ", " + studentObj.getAddress().getCity() + ", " + studentObj.getAddress().getState() + " " + studentObj.getAddress().getZip()) + " was added succesfully.");
+
+                                        break;
+
+                                    // Street.   
+                                    case 2:
+                                        // Geeting data.
+                                        studentObj = admiss.getStud();
+                                        index = admiss.getIndex();
+
+                                        // Getting and setting the NEW student street.
+                                        tempID = getData.getWord("Enter the new student street:");
+                                        studentObj.getAddress().setStreet(tempID);
+                                        
+                                        // Display feedback.                                     
+                                        JOptionPane.showMessageDialog(null, "The new student street " + (tempID = studentObj.getAddress().getStreet()) + " was added succesfully.");
+
+                                        break;
+
+                                    // City.  
+                                    case 3:
+                                       // Geeting data.
+                                        studentObj = admiss.getStud();
+                                        index = admiss.getIndex();
+
+                                        // Getting and setting the NEW student city.                                        
+                                        tempID = getData.getWord("Enter the new student city:");
+                                        studentObj.getAddress().setCity(tempID);                                        
+
+                                        // Display feedback.                                     
+                                        JOptionPane.showMessageDialog(null, "The new student city " + (tempID = studentObj.getAddress().getCity()) + " was added succesfully.");
+
+                                        break;
+                                        
+                                    // State.  
+                                    case 4:
+                                       // Geeting data.
+                                        studentObj = admiss.getStud();
+                                        index = admiss.getIndex();
+
+                                        // Getting and setting the NEW student state.                                        
+                                        tempID = getData.getWord("Enter the new student state:");
+                                        studentObj.getAddress().setState(tempID);                                        
+
+                                        // Display feedback.                                     
+                                        JOptionPane.showMessageDialog(null, "The new student state " + (tempID = studentObj.getAddress().getState()) + " was added succesfully.");
+
+                                        break;   
+                                        
+                                    // Zip code.  
+                                    case 5:
+                                       // Geeting data.
+                                        studentObj = admiss.getStud();
+                                        index = admiss.getIndex();
+
+                                        // Getting and setting the NEW student state.                                        
+                                        tempID = getData.getWord("Enter the new student zip code:");
+                                        studentObj.getAddress().setZip(tempID);                                        
+
+                                        // Display feedback.                                     
+                                        JOptionPane.showMessageDialog(null, "The new student zip code " + (tempID = studentObj.getAddress().getZip()) + " was added succesfully.");
+
+                                        break;
+
+                                    default:
+                                        JOptionPane.showMessageDialog(null, "Enter a valid option");
+                                }
+
+                            //default:
+                              //  JOptionPane.showMessageDialog(null, "Enter a valid option");
+
                         }
                         break;
                     }
