@@ -22,7 +22,7 @@ public class Assignment1
         Date date = new Date();
         
         // Creating Admission object.
-        Admissions admiss = new Admissions();   
+        Admissions admiss = new Admissions();   // Database.
         
         
        
@@ -47,41 +47,41 @@ public class Assignment1
                     + "[1] Show Students\n"
                     + "[2] Add Student\n"
                     + "[3] Drop Student\n"
-                    + "[4] Search Student\n"
+                    + "[4] Update Student\n"
                     + "[5] Add Course\n"
                     + "[6] Remove Course\n"
                     + "[7] Exit");
        
             switch (choice)
             {
-                // Show Students.
+                // Show Students.  // implementationnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
                 case 1:
-                    // JOptionPane.showMessageDialog(null, "Not yet developed");
+                    // Get the List from the class and store in this new list.
                     ArrayList list = admiss.getList();
                     
+                    // Var declaration for the loop.
                     int i = 0;
-                    int length = list.size();
-                   
+                    int length = list.size();                   
                     String studentString = "";
                     
+                    // Going as many times as the length of the list.
                     while (i < length)
                     {
-                     // Commenttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
-                     Student studTest = (Student)list.get(i);
-                   
-                      studentString = studentString + "Id number: " + studTest.getIDnumber() + "\nName: " + studTest.getName().getFirstName() + ", "
-                      + studTest.getName().getLastName() + "\n"
-                      + "Address: " + studTest.getAddress().getStreet() + ", " + studTest.getAddress().getCity() + ", "
-                      + studTest.getAddress().getState() + " " + studTest.getAddress().getZip() + "\nDate: " + studTest.getDate()
-                      + "\nCourses: " + studTest.getCourseArray() + "\n\n";
-                      
-                      //JOptionPane.showMessageDialog(null, studentString);
+                     // Create object student of the list.
+                     Student studObjList = (Student)list.get(i);
+                     
+                     // Setting up the whole string of the student info.
+                      studentString = studentString + "Id number: " + studObjList.getIDnumber() + "\nName: " + studObjList.getName().getFirstName() + ", "
+                      + studObjList.getName().getLastName() + "\n"
+                      + "Address: " + studObjList.getAddress().getStreet() + ", " + studObjList.getAddress().getCity() + ", "
+                      + studObjList.getAddress().getState() + " " + studObjList.getAddress().getZip() + "\nDate: " + dateFormat.format(date)
+                      + "\nCourses: " + studObjList.getCourseArray() + "\n\n";
+                                            
                       i++;                       
                     }
                     
-                    //JOptionPane.showMessageDialog(null, studentString);
-                     show(studentString, "Active Students", JOptionPane.INFORMATION_MESSAGE);
-                    
+                    // Calling a method to display the info of the student in a scroll pane.
+                     show(studentString, "Active Students", JOptionPane.INFORMATION_MESSAGE);                    
                     
                     break;
                 
@@ -122,10 +122,29 @@ public class Assignment1
                 
                 // Drop Student.
                 case 3:
-                    JOptionPane.showMessageDialog(null, "Not yet developed");
+                    // Creating the studentID object and getting the number.
+                    String ID = getData.getWord("[Drop] Enter the student ID:");
+                    
+                    // Search ID on admission list.
+                    admiss.searchStudent(ID);
+                    
+                    // If was not in the list the not found.
+                    if (!admiss.inList())
+                    {
+                        JOptionPane.showMessageDialog(null, "Student not found.");
+                    }
+                    else 
+                    {
+                        // If student was found drop the student and display feedback.
+                        Student studentObj = admiss.getStud();
+                        int index = admiss.getIndex();
+                        admiss.drop(index);
+                        JOptionPane.showMessageDialog(null, "The student [" + ID + "] ("+ admiss.getStud().getName().getFirstName() + " " + admiss.getStud().getName().getLastName() + ") have been dropped.");
+                    }
+                    
                     break;
                     
-                // Search Student.    
+                // Update Student Info.    
                 case 4:
                     JOptionPane.showMessageDialog(null, "Not yet developed");
                     break;
