@@ -144,7 +144,38 @@ public class Assignment1
                     
                 // Update Student Info.    
                 case 4:
-                    JOptionPane.showMessageDialog(null, "Not yet developed");
+                    // JOptionPane.showMessageDialog(null, "Not yet developed");
+                    
+                    // Getting the student ID.
+                    tempID = getData.getWord("[Search] Enter the student ID:");
+                    
+                    // Search ID on admission list.
+                    admiss.searchStudent(tempID);
+                    
+                    int newChoice = getData.getInt("Select the information that you want to update:\n [1] ID number \n [2] Name \n [3] Address");
+                    
+                    switch (newChoice)
+                    {
+                        case 1:
+                            // Getting the NEW student ID.
+                            tempID = getData.getWord("Enter the new student ID:");
+                            
+                            // If was not in the list then not found.
+                            if (!admiss.inList())
+                            {
+                                JOptionPane.showMessageDialog(null, "Student not found.");
+                            }
+                            else 
+                            {
+                                // If student was found change the student ID and display feedback.
+                                Student studentObj = admiss.getStud();
+                                int index = admiss.getIndex();                                
+                                studentObj.setIDnumber(tempID); 
+                                JOptionPane.showMessageDialog(null, "The new student ID " + tempID + " was added succesfully..");
+                            }
+                            
+                            break;
+                    }
                     break;
                     
                 // Add Course.    

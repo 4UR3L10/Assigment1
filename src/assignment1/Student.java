@@ -101,5 +101,12 @@ public class Student
 
         // If it not found then not found message.        
         return 1;
-    }    
+    }
+
+    public void setIDnumber(String IDnumber)
+    {
+        this.IDnumber = IDnumber;
+    }
+
+    
 }
