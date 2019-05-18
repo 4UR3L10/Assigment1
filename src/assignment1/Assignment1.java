@@ -25,12 +25,10 @@ public class Assignment1
         Admissions admiss = new Admissions();   // Database.
         
         String tempID = "";
+        int tempChoice = 0;
        
                 
-        /*
-        //stud1.dropCourse("ASS4050");
-        // stud1.addCourse("CUL9090");        
-        */
+        
         
         
         // Welcome message.
@@ -40,17 +38,17 @@ public class Assignment1
         while (keepLoop)
         {
             // Info message.
-            int choice = getData.getInt("\tAdmission Department\n" + dateFormat.format(date) + "\n" + 
+            tempChoice = getData.getInt("\tAdmission Department\n" + dateFormat.format(date) + "\n" + 
                       "\nEnter a number:\n"
                     + "[1] Show Students\n"
                     + "[2] Add Student\n"
                     + "[3] Drop Student\n"
-                    + "[4] Update Student\n"
+                    + "[4] Update Student Info\n"
                     + "[5] Add Course\n"
                     + "[6] Remove Course\n"
                     + "[7] Exit");
        
-            switch (choice)
+            switch (tempChoice)
             {
                 // Show Students.  // implementationnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
                 case 1:
@@ -145,38 +143,102 @@ public class Assignment1
                 // Update Student Info.    
                 case 4:
                     // JOptionPane.showMessageDialog(null, "Not yet developed");
-                    
+
                     // Getting the student ID.
                     tempID = getData.getWord("[Search] Enter the student ID:");
-                    
+
                     // Search ID on admission list.
                     admiss.searchStudent(tempID);
-                    
-                    int newChoice = getData.getInt("Select the information that you want to update:\n [1] ID number \n [2] Name \n [3] Address");
-                    
-                    switch (newChoice)
+
+                    // If was not in the list then not found.
+                    if (!admiss.inList())
                     {
-                        case 1:
-                            // Getting the NEW student ID.
-                            tempID = getData.getWord("Enter the new student ID:");
-                            
-                            // If was not in the list then not found.
-                            if (!admiss.inList())
-                            {
-                                JOptionPane.showMessageDialog(null, "Student not found.");
-                            }
-                            else 
-                            {
-                                // If student was found change the student ID and display feedback.
+                        JOptionPane.showMessageDialog(null, "Student not found.");
+                    } 
+                    else
+                    {
+                        // Display Menu options and getting input.
+                        tempChoice = getData.getInt("Select the information that you want to update:\n [1] ID number \n [2] Name \n [3] Address");
+                        
+                       
+                        switch (tempChoice)
+                        {
+                            // ID.
+                            case 1:
+                                // Getting the NEW student ID.
+                                tempID = getData.getWord("Enter the new student ID:");
+
+                                // Change the student ID and display feedback.
                                 Student studentObj = admiss.getStud();
-                                int index = admiss.getIndex();                                
-                                studentObj.setIDnumber(tempID); 
-                                JOptionPane.showMessageDialog(null, "The new student ID " + tempID + " was added succesfully..");
-                            }
-                            
-                            break;
+                                int index = admiss.getIndex();
+                                studentObj.setIDnumber(tempID);
+                                JOptionPane.showMessageDialog(null, "The new student ID " + tempID + " was added succesfully.");
+
+                                break;
+                                
+                            // Name.
+                            case 2:
+                                // Display menu and getting input.
+                                tempChoice = getData.getInt("Select the information that you want to update:\n [1] Full name \n [2] Firstname \n [3] Lastname");
+                                
+                                switch (tempChoice)
+                                {
+                                    // Fullname.
+                                    case 1:
+                                        // Geeting data.
+                                        studentObj = admiss.getStud();
+                                        index = admiss.getIndex();
+                                        
+                                        // Getting and setting the NEW student Fullname.
+                                        tempID = getData.getWord("Enter the new student firstname:");
+                                        studentObj.getName().setFirstName(tempID);
+                                        tempID = getData.getWord("Enter the new student lastname:");
+                                        studentObj.getName().setLastName(tempID);
+                                        
+                                        // Display feedback.                                     
+                                        JOptionPane.showMessageDialog(null, "The new student fullname " + (tempID = studentObj.getName().getFirstName() + ", " + studentObj.getName().getLastName())  + " was added succesfully.");
+                                        
+                                        break;
+                                        
+                                    // First name.   
+                                    case 2:
+                                        // Geeting data.
+                                        studentObj = admiss.getStud();
+                                        index = admiss.getIndex();
+                                        
+                                        // Getting and setting the NEW student firstname.
+                                        tempID = getData.getWord("Enter the new student firstname:");
+                                        studentObj.getName().setFirstName(tempID);
+                                      
+                                        // Display feedback.                                     
+                                        JOptionPane.showMessageDialog(null, "The new student fistname " + (tempID = studentObj.getName().getFirstName()) + " was added succesfully.");
+                                        
+                                        break;
+                                        
+                                    // Last name.  
+                                    case 3:
+                                        // Geeting data.
+                                        studentObj = admiss.getStud();
+                                        index = admiss.getIndex();
+                                        
+                                        // Getting and setting the NEW student Lastname.
+                                        tempID = getData.getWord("Enter the new student lastname:");
+                                        studentObj.getName().setLastName(tempID);
+                                        
+                                        // Display feedback.                                     
+                                        JOptionPane.showMessageDialog(null, "The new student lastname " + (tempID = studentObj.getName().getLastName())  + " was added succesfully.");
+                                        
+                                        break;    
+                                }
+                                break;
+                             
+                            // Address.    
+                            case 3:
+                                
+                                break;
+                        }
+                        break;
                     }
-                    break;
                     
                 // Add Course.    
                 case 5:                                       
