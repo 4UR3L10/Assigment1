@@ -4,6 +4,10 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;       
+import javax.swing.JPanel; // ?
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
 
 public class Assignment1
 {
@@ -57,17 +61,28 @@ public class Assignment1
                     
                     int i = 0;
                     int length = list.size();
-                    String student = "";
+                   
+                    String studentString = "";
                     
                     while (i < length)
                     {
-                      list.get(i);
-                      student = student + "Name:" + admiss.getStud().getName().getFirstName();
-                      i++;
-                       
+                     // Commenttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
+                     Student studTest = (Student)list.get(i);
+                   
+                      studentString = studentString + "Name: " + studTest.getName().getFirstName() + ", "
+                      + studTest.getName().getLastName() + "\nId number: " + studTest.getIDnumber() + "\n"
+                      + "Address: " + studTest.getAddress().getStreet() + ", " + studTest.getAddress().getCity() + ", "
+                      + studTest.getAddress().getState() + " " + studTest.getAddress().getZip() + "\nDate: " + studTest.getDate()
+                      + studTest.getCourseArray();
+                      
+                      //JOptionPane.showMessageDialog(null, studentString);
+                      i++;                       
                     }
                     
-                    JOptionPane.showMessageDialog(null,student);
+                    //JOptionPane.showMessageDialog(null, studentString);
+                     show(studentString, "Active Students", JOptionPane.INFORMATION_MESSAGE);
+                    
+                    
                     break;
                 
                 // Add Students.
@@ -134,8 +149,13 @@ public class Assignment1
                     JOptionPane.showMessageDialog(null, "Enter a valid option");
             }
         }
-        
-       
+    }
+    
+    static void show(String resultString, String heading, int MESSAGE_TYPE)
+    {
+        JTextArea textAreaObject = new JTextArea(resultString, 20, 30);
+        JScrollPane scrollPaneObject = new JScrollPane(textAreaObject);
+        JOptionPane.showMessageDialog(null, scrollPaneObject, heading, MESSAGE_TYPE);
     }
 
 }
