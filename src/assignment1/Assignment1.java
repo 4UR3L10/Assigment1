@@ -69,11 +69,11 @@ public class Assignment1
                      // Commenttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
                      Student studTest = (Student)list.get(i);
                    
-                      studentString = studentString + "Name: " + studTest.getName().getFirstName() + ", "
-                      + studTest.getName().getLastName() + "\nId number: " + studTest.getIDnumber() + "\n"
+                      studentString = studentString + "Id number: " + studTest.getIDnumber() + "\nName: " + studTest.getName().getFirstName() + ", "
+                      + studTest.getName().getLastName() + "\n"
                       + "Address: " + studTest.getAddress().getStreet() + ", " + studTest.getAddress().getCity() + ", "
                       + studTest.getAddress().getState() + " " + studTest.getAddress().getZip() + "\nDate: " + studTest.getDate()
-                      + studTest.getCourseArray();
+                      + "\nCourses: " + studTest.getCourseArray() + "\n\n";
                       
                       //JOptionPane.showMessageDialog(null, studentString);
                       i++;                       
