@@ -86,20 +86,20 @@ public class Student
         return 1;
     }
 
-    public void dropCourse(String course)
+    public int dropCourse(String course)
     { 
         // Going throught the Array.
         for (int i = 0; i < 5; i++)
         {
             // If it is found drop the course.
-            if (courseArray[i] == course)
+            if (courseArray[i].equalsIgnoreCase(course))
             {
                 courseArray[i] = "";
-                return;
+                return 0;
             }
         }
 
-        // If it not found then not found message.
-        System.out.println("*The course was not found.*\n");
+        // If it not found then not found message.        
+        return 1;
     }    
 }

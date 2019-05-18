@@ -24,12 +24,10 @@ public class Assignment1
         // Creating Admission object.
         Admissions admiss = new Admissions();   // Database.
         
-        
+        String tempID = "";
        
                 
-        /*        
-        stud1.addCourse("ASS4050");
-        stud1.addCourse("BOY4545");
+        /*
         //stud1.dropCourse("ASS4050");
         // stud1.addCourse("CUL9090");        
         */
@@ -110,10 +108,10 @@ public class Assignment1
                     String[] courseArray = {courseOne, courseTwo, courseThird, courseFourth, courseFive};
                     
                     // Getting the student ID.
-                    String studID = getData.getWord("Enter the student ID:");
+                    tempID = getData.getWord("Enter the student ID:");
                     
-                    // Creating the student object.        
-                    Student stud = new Student(name, address, date, studID, courseArray);
+                    // Creating the student object.
+                    Student stud = new Student(name, address, date, tempID, courseArray);
                     
                     // Adding the student object to the arrayList.                    
                     admiss.add(stud);          
@@ -122,11 +120,11 @@ public class Assignment1
                 
                 // Drop Student.
                 case 3:
-                    // Getting the student ID.
-                    String ID = getData.getWord("[Drop] Enter the student ID:");
+                    // Getting the student ID.                    
+                    tempID = getData.getWord("[Drop] Enter the student ID:");
                     
                     // Search ID on admission list.
-                    admiss.searchStudent(ID);
+                    admiss.searchStudent(tempID);
                     
                     // If was not in the list then not found.
                     if (!admiss.inList())
@@ -139,7 +137,7 @@ public class Assignment1
                         Student studentObj = admiss.getStud();
                         int index = admiss.getIndex();
                         admiss.drop(index);
-                        JOptionPane.showMessageDialog(null, "The student [" + ID + "] ("+ admiss.getStud().getName().getFirstName() + " " + admiss.getStud().getName().getLastName() + ") have been dropped.");
+                        JOptionPane.showMessageDialog(null, "The student [" + tempID + "] ("+ admiss.getStud().getName().getFirstName() + " " + admiss.getStud().getName().getLastName() + ") have been dropped.");
                     }
                     
                     break;
@@ -152,10 +150,10 @@ public class Assignment1
                 // Add Course.    
                 case 5:                                       
                     // Getting the student ID.
-                    String id = getData.getWord("[Search] Enter the student ID:");
+                    tempID = getData.getWord("[Search] Enter the student ID:");
                     
                     // Search ID on admission list.
-                    admiss.searchStudent(id);
+                    admiss.searchStudent(tempID);
                     
                     // Getting name of the ocurse.
                     String newCourse = getData.getWord("Enter the course:");
@@ -167,26 +165,58 @@ public class Assignment1
                     }
                     else 
                     {
-                        // If student was found add course to the student and display feedback.
+                        // If student was found try to add course to the student and display feedback.
                         Student studentObj = admiss.getStud();
                         int index = admiss.getIndex();
                         
+                        // If there is space in the course array add the course.
                         if (admiss.getStud().addCourse(newCourse) == 0)
                         {
-                            JOptionPane.showMessageDialog(null, "The course " + newCourse + "  have been added to student [" + id + "] (" + admiss.getStud().getName().getFirstName() + " " + admiss.getStud().getName().getLastName() + ").");
+                            JOptionPane.showMessageDialog(null, "The course " + newCourse + "  have been added to student [" + tempID + "] (" + admiss.getStud().getName().getFirstName() + " " + admiss.getStud().getName().getLastName() + ").");
                             JOptionPane.showMessageDialog(null, admiss.getStud().getCourseArray());
                         }
-                        else 
+                        else // If there is no space in the course array display feedback that it could not be added.
                         {
                             JOptionPane.showMessageDialog(null, "Course " + newCourse + " was not added\n This student has all courses.");
                         }                        
-                        
                     }
                     break;
                 
                 // Remove Course.    
                 case 6:
-                    JOptionPane.showMessageDialog(null, "Not yet developed");
+                    // Getting the student ID.
+                    tempID = getData.getWord("[Search] Enter the student ID:");
+                    
+                    // Search ID on admission list.
+                    admiss.searchStudent(tempID);
+                    
+                    // Getting name of the ocurse.
+                    String course = getData.getWord("Enter the course:");
+                    
+                    // If was not in the list then not found.
+                    if (!admiss.inList())
+                    {
+                        JOptionPane.showMessageDialog(null, "Student not found.");
+                    }
+                    else 
+                    {
+                        // If student was found try to drop the course for the student and display feedback.
+                        Student studentObj = admiss.getStud();
+                        int index = admiss.getIndex();
+                        
+                        // If there is space in the course array add the course.
+                        if (admiss.getStud().dropCourse(course) == 0)
+                        {
+                            JOptionPane.showMessageDialog(null, "The course " + course + "  have been dropped for student [" + tempID + "] (" + admiss.getStud().getName().getFirstName() + " " + admiss.getStud().getName().getLastName() + ").");
+                            JOptionPane.showMessageDialog(null, admiss.getStud().getCourseArray());
+                        }
+                        else // If there is no space in the course array display feedback that it could not be added.
+                        {
+                            JOptionPane.showMessageDialog(null, "Course " + course + " was not dropped\n This student is not taking this course.");
+                        }                        
+                    }
+                    
+                    
                     break;
                   
                 // Exit Program.    
@@ -202,7 +232,7 @@ public class Assignment1
     
     static void show(String resultString, String heading, int MESSAGE_TYPE)
     {
-        JTextArea textAreaObject = new JTextArea(resultString, 20, 30);
+        JTextArea textAreaObject = new JTextArea(resultString, 20, 50);
         JScrollPane scrollPaneObject = new JScrollPane(textAreaObject);
         JOptionPane.showMessageDialog(null, scrollPaneObject, heading, MESSAGE_TYPE);
     }
