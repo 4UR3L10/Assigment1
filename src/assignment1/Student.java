@@ -61,7 +61,7 @@ public class Student
                 // Not including the comma when it is blank. 
             } else
             {
-                arrayCounter = arrayCounter + "," + courseArray[i];
+                arrayCounter = arrayCounter + ", " + courseArray[i];
             }
         }
 
@@ -69,21 +69,21 @@ public class Student
         return arrayCounter;
     }
 
-    public void addCourse(String course)
+    public int addCourse(String course)
     {
         // Going throught the Array.
         for (int i = 0; i < 5; i++)
         {
             // If it is space add the course.
-            if (courseArray[i] == "")
+            if (courseArray[i].isEmpty())
             {
-                courseArray[i] = course;
-                return;
+                courseArray[i] = course;                
+                return 0;
             }
         }
 
-        // If it not added then not found message.
-        System.out.println("*This student has all courses.*\n");
+        // If it not added then not found message.       
+        return 1;
     }
 
     public void dropCourse(String course)

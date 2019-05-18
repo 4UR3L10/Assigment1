@@ -109,7 +109,7 @@ public class Assignment1
                     String courseFive = getData.getWord("Enter course five:");
                     String[] courseArray = {courseOne, courseTwo, courseThird, courseFourth, courseFive};
                     
-                    // Creating the studentID object.
+                    // Getting the student ID.
                     String studID = getData.getWord("Enter the student ID:");
                     
                     // Creating the student object.        
@@ -122,13 +122,13 @@ public class Assignment1
                 
                 // Drop Student.
                 case 3:
-                    // Creating the studentID object and getting the number.
+                    // Getting the student ID.
                     String ID = getData.getWord("[Drop] Enter the student ID:");
                     
                     // Search ID on admission list.
                     admiss.searchStudent(ID);
                     
-                    // If was not in the list the not found.
+                    // If was not in the list then not found.
                     if (!admiss.inList())
                     {
                         JOptionPane.showMessageDialog(null, "Student not found.");
@@ -150,8 +150,38 @@ public class Assignment1
                     break;
                     
                 // Add Course.    
-                case 5:
-                    JOptionPane.showMessageDialog(null, "Not yet developed");
+                case 5:                                       
+                    // Getting the student ID.
+                    String id = getData.getWord("[Search] Enter the student ID:");
+                    
+                    // Search ID on admission list.
+                    admiss.searchStudent(id);
+                    
+                    // Getting name of the ocurse.
+                    String newCourse = getData.getWord("Enter the course:");
+                    
+                    // If was not in the list then not found.
+                    if (!admiss.inList())
+                    {
+                        JOptionPane.showMessageDialog(null, "Student not found.");
+                    }
+                    else 
+                    {
+                        // If student was found add course to the student and display feedback.
+                        Student studentObj = admiss.getStud();
+                        int index = admiss.getIndex();
+                        
+                        if (admiss.getStud().addCourse(newCourse) == 0)
+                        {
+                            JOptionPane.showMessageDialog(null, "The course " + newCourse + "  have been added to student [" + id + "] (" + admiss.getStud().getName().getFirstName() + " " + admiss.getStud().getName().getLastName() + ").");
+                            JOptionPane.showMessageDialog(null, admiss.getStud().getCourseArray());
+                        }
+                        else 
+                        {
+                            JOptionPane.showMessageDialog(null, "Course " + newCourse + " was not added\n This student has all courses.");
+                        }                        
+                        
+                    }
                     break;
                 
                 // Remove Course.    
