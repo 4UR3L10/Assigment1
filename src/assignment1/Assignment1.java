@@ -189,39 +189,84 @@ public class Assignment1
 
                 // Add Students.
                 case 2:
-                    // Creating an Student.
+                    // Info message.
+                    tempChoice = getData.getInt("\n" + "[1] Add New Student\n" + "[2] Dropped Student\n");
 
-                    // Creating a name object.
-                    String firstName = getData.getWord("Enter First Name:");
-                    String lastName = getData.getWord("Enter Last Name:");
-                    Name name = new Name(firstName, lastName);
-
-                    // Creating an address object.
-                    String street = getData.getWord("Enter your street:");
-                    String city = getData.getWord("Enter your city:");
-                    String state = getData.getWord("Enter your state:");
-                    String zipCode = getData.getWord("Enter your zip code:");
-                    Address address = new Address(street, city, state, zipCode);
-
-                    // Creating the courses.      
-                    String courseOne = getData.getWord("Enter course one:");
-                    String courseTwo = getData.getWord("Enter course two:");
-                    String courseThird = getData.getWord("Enter course third:");
-                    String courseFourth = getData.getWord("Enter course fourth:");
-                    String courseFive = getData.getWord("Enter course five:");
-                    String[] courseArray =
+                    switch (tempChoice)
                     {
-                        courseOne, courseTwo, courseThird, courseFourth, courseFive
-                    };
+                        // Creating an Student.
+                        case 1:
+                            // Getting the student ID.
+                            tempID = getData.getWord("Enter the student ID:");
+                            
+                            // Search ID on both list to check if the student already exist.
+                            admiss.searchStudent(tempID);
+                            dropped.searchStudent(tempID);
+                            
+                            // If was not in both lists then add student.
+                            if (!admiss.inList() && !dropped.inList())
+                            {
+                                // Creating a name object.
+                                String firstName = getData.getWord("Enter First Name:");
+                                String lastName = getData.getWord("Enter Last Name:");
+                                Name name = new Name(firstName, lastName);
 
-                    // Getting the student ID.
-                    tempID = getData.getWord("Enter the student ID:");
+                                // Creating an address object.
+                                String street = getData.getWord("Enter your street:");
+                                String city = getData.getWord("Enter your city:");
+                                String state = getData.getWord("Enter your state:");
+                                String zipCode = getData.getWord("Enter your zip code:");
+                                Address address = new Address(street, city, state, zipCode);
 
-                    // Creating the student object.
-                    Student stud = new Student(name, address, date, tempID, courseArray);
+                                // Creating the courses.      
+                                String courseOne = getData.getWord("Enter course one:");
+                                String courseTwo = getData.getWord("Enter course two:");
+                                String courseThird = getData.getWord("Enter course third:");
+                                String courseFourth = getData.getWord("Enter course fourth:");
+                                String courseFive = getData.getWord("Enter course five:");
+                                String[] courseArray =
+                                {
+                                    courseOne, courseTwo, courseThird, courseFourth, courseFive
+                                };
 
-                    // Adding the student object to the arrayList.                    
-                    admiss.add(stud);
+                                // Creating the student object.
+                                Student stud = new Student(name, address, date, tempID, courseArray);
+                                // Adding the student object to the arrayList.
+                                admiss.add(stud);
+                            } else
+                            {
+                                // Displaying a message to the user that stud already exist.
+                                JOptionPane.showMessageDialog(null, "Student already exist.");
+                            }
+                            break;
+                        
+                        // Add student from the drop list.    
+                        case 2:
+                            // Getting the student ID.
+                            tempID = getData.getWord("Enter the student ID:");
+                            
+                            // Searching in the dropped list
+                            dropped.searchStudent(tempID);
+                            
+                            // If was not in both lists then add student.
+                            if (!dropped.inList())
+                            {
+                                // Displaying a message to the user that stud already exist.
+                                JOptionPane.showMessageDialog(null, "Student does not exist.");                                
+                            } else
+                            {
+                                // If student was found add the student and display feedback.
+                                Student studentObj = dropped.getStud();
+                                int index = dropped.getIndex();
+                                dropped.drop(index);
+                                admiss.add(studentObj);
+                                JOptionPane.showMessageDialog(null, "The student [" + tempID + "] (" + admiss.getStud().getName().getFirstName() + " " + admiss.getStud().getName().getLastName() + ") have been added.");
+                            }
+                                                        
+                            break;
+                            
+                            
+                    }
 
                     break;
 
