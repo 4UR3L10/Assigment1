@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-public class Assignment1
+public class Assignment1  // Test Class. 
 {
 
     public static void main(String[] args)
@@ -290,6 +290,7 @@ public class Assignment1
                         dropped.add(studentObj);
                         admiss.drop(index);
                         JOptionPane.showMessageDialog(null, "The student [" + tempID + "] (" + admiss.getStud().getName().getFirstName() + " " + admiss.getStud().getName().getLastName() + ") have been dropped.");
+                        admiss.getStud().dropAllCourses();
                     }
 
                     break;
@@ -487,10 +488,7 @@ public class Assignment1
                     tempID = getData.getWord("[Search] Enter the student ID:");
 
                     // Search ID on admission list.
-                    admiss.searchStudent(tempID);
-
-                    // Getting name of the ocurse.
-                    String newCourse = getData.getWord("Enter the course:");
+                    admiss.searchStudent(tempID);                    
 
                     // If was not in the list then not found.
                     if (!admiss.inList())
@@ -498,6 +496,9 @@ public class Assignment1
                         JOptionPane.showMessageDialog(null, "Student not found.");
                     } else
                     {
+                        // Getting name of the ocurse.
+                        String newCourse = getData.getWord("Enter the course:");
+                    
                         // If student was found try to add course to the student and display feedback.
                         Student studentObj = admiss.getStud();
                         int index = admiss.getIndex();
@@ -522,25 +523,25 @@ public class Assignment1
                     // Search ID on admission list.
                     admiss.searchStudent(tempID);
 
-                    // Getting name of the ocurse.
-                    String course = getData.getWord("Enter the course:");
-
                     // If was not in the list then not found.
                     if (!admiss.inList())
                     {
                         JOptionPane.showMessageDialog(null, "Student not found.");
                     } else
                     {
+                        // Getting name of the ocurse.
+                        String course = getData.getWord("Enter the course:");
+                    
                         // If student was found try to drop the course for the student and display feedback.
                         Student studentObj = admiss.getStud();
                         int index = admiss.getIndex();
 
-                        // If there is space in the course array add the course.
+                        // Drop the course.
                         if (admiss.getStud().dropCourse(course) == 0)
                         {
                             JOptionPane.showMessageDialog(null, "The course " + course + "  have been dropped for student [" + tempID + "] (" + admiss.getStud().getName().getFirstName() + " " + admiss.getStud().getName().getLastName() + ").");
                             JOptionPane.showMessageDialog(null, admiss.getStud().getCourseArray());
-                        } else // If there is no space in the course array display feedback that it could not be added.
+                        } else // If the is not taking the course.
                         {
                             JOptionPane.showMessageDialog(null, "Course " + course + " was not dropped\n This student is not taking this course.");
                         }

@@ -102,6 +102,15 @@ public class Student
         // If it not found then not found message.        
         return 1;
     }
+    
+    public void dropAllCourses()
+    {
+        // Going throught the Array.
+        for (int i = 0; i < 5; i++)
+        {
+          courseArray[i] = "";             
+        }        
+    }
 
     public void setIDnumber(String IDnumber)
     {
