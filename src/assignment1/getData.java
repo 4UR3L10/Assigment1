@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 
 public class getData
 {
+
     static double getDouble(String s)
     {
         return Double.parseDouble(getWord(s));

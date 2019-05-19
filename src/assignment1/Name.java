@@ -34,7 +34,5 @@ public class Name
     {
         this.lastName = lastName;
     }
-    
-    
 
 }

@@ -21,9 +21,10 @@ public class Assignment1
         Date date = new Date();
         
         // Creating Admission object.
-        Admissions admiss = new Admissions();   // Enrroled Students Database.
+        Admissions admiss = new Admissions();   // Enrolled Students Database.
         Admissions dropped = new Admissions();   // Dropped Students Database.
         
+        // initializing vars. +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         String tempID = "";
         int tempChoice = 0;
        
@@ -34,7 +35,7 @@ public class Assignment1
         // Welcome message.
         JOptionPane.showMessageDialog(null, "Welcome to the admission software!" + "\nClick 'OK' to continue.");
         
-        // While loop to keep the software working until user wants it.
+        // While-loop to keep the software working until user wants it.
         while (keepLoop)
         {
             // Info message.
@@ -50,7 +51,7 @@ public class Assignment1
        
             switch (tempChoice)
             {
-                // Show Students.  // implementationnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+                // Show Students. 
                 case 1:
                     // Display Menu options and getting input.
                     tempChoice = getData.getInt("Select the information that you want to show:\n [1] Currently Enrolled \n [2] Dropped Students \n [3] All Students");
@@ -72,7 +73,7 @@ public class Assignment1
                                 // Create object student of the list.
                                 Student studObjList = (Student) list.get(i);
 
-                                // Setting up the whole string of the student info.
+                                // Setting up the whole string of the student info.                                
                                 studentString = studentString + "Id number: " + studObjList.getIDnumber() + "\nName: " + studObjList.getName().getFirstName() + ", "
                                         + studObjList.getName().getLastName() + "\n"
                                         + "Address: " + studObjList.getAddress().getStreet() + ", " + studObjList.getAddress().getCity() + ", "
@@ -83,7 +84,7 @@ public class Assignment1
                             }
 
                             // Calling a method to display the info of the student in a scroll pane.
-                            show(studentString, "Active Students", JOptionPane.INFORMATION_MESSAGE);
+                            show(studentString, "CURRENTLY ENROLLED", JOptionPane.INFORMATION_MESSAGE);
                             break;
 
                         case 2:
@@ -101,7 +102,7 @@ public class Assignment1
                                 // Create object student of the list.
                                 Student studObjList = (Student) dropList.get(i);
 
-                                // Setting up the whole string of the student info.
+                                // Setting up the whole string of the student info.                                
                                 studentString = studentString + "Id number: " + studObjList.getIDnumber() + "\nName: " + studObjList.getName().getFirstName() + ", "
                                         + studObjList.getName().getLastName() + "\n"
                                         + "Address: " + studObjList.getAddress().getStreet() + ", " + studObjList.getAddress().getCity() + ", "
@@ -112,11 +113,11 @@ public class Assignment1
                             }
 
                             // Calling a method to display the info of the student in a scroll pane.
-                            show(studentString, "Students who were dropped", JOptionPane.INFORMATION_MESSAGE);
+                            show(studentString, "STUDENTS WHO WHERE DROPPED", JOptionPane.INFORMATION_MESSAGE);
                             break;
                          
                         case 3:
-                            // Get the List from the class and store in this new list.
+                            // Get the Lists from the class and store them in the new list.
                             ArrayList totalList = new ArrayList();
                             totalList.addAll(dropped.getList());
                             totalList.addAll(admiss.getList());
@@ -143,7 +144,7 @@ public class Assignment1
                             }
 
                             // Calling a method to display the info of the student in a scroll pane.
-                            show(studentString, "All students", JOptionPane.INFORMATION_MESSAGE);
+                            show(studentString, "All STUDENTS", JOptionPane.INFORMATION_MESSAGE);
                             break;
                     }
 
@@ -165,7 +166,7 @@ public class Assignment1
                     String zipCode = getData.getWord("Enter your zip code:");
                     Address address = new Address(street, city, state, zipCode);
                     
-                    // Creating the courses.      Implementationnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn   ADDDDDDDD DROPPPPPPPPP
+                    // Creating the courses.      
                     String courseOne = getData.getWord("Enter course one:");
                     String courseTwo = getData.getWord("Enter course two:");
                     String courseThird = getData.getWord("Enter course third:");
@@ -202,7 +203,7 @@ public class Assignment1
                         // If student was found drop the student and display feedback.
                         Student studentObj = admiss.getStud();
                         int index = admiss.getIndex();
-                        dropped.add(studentObj);  // VERIFYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
+                        dropped.add(studentObj);  
                         admiss.drop(index);
                         JOptionPane.showMessageDialog(null, "The student [" + tempID + "] ("+ admiss.getStud().getName().getFirstName() + " " + admiss.getStud().getName().getLastName() + ") have been dropped.");
                     }
@@ -211,8 +212,6 @@ public class Assignment1
                     
                 // Update Student Info.    
                 case 4:
-                    // JOptionPane.showMessageDialog(null, "Not yet developed");
-
                     // Getting the student ID.
                     tempID = getData.getWord("[Search] Enter the student ID:");
 
@@ -396,13 +395,10 @@ public class Assignment1
                                         JOptionPane.showMessageDialog(null, "Enter a valid option");
                                 }
 
-                            //default:
-                              //  JOptionPane.showMessageDialog(null, "Enter a valid option");
-
                         }
                         break;
                     }
-                    
+
                 // Add Course.    
                 case 5:                                       
                     // Getting the student ID.
@@ -486,6 +482,7 @@ public class Assignment1
         }
     }
     
+    // Method for the scroll pane.
     static void show(String resultString, String heading, int MESSAGE_TYPE)
     {
         JTextArea textAreaObject = new JTextArea(resultString, 20, 50);

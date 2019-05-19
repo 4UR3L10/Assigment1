@@ -39,6 +39,7 @@ public class Address
         return zip;
     }
 
+    // Setters.
     public void setStreet(String street)
     {
         this.street = street;
@@ -58,6 +59,5 @@ public class Address
     {
         this.zip = zip;
     }
-    
-    
+
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Admissions
 {
+
     private ArrayList<Student> list;
     private Student stud;
     private int index;
@@ -13,7 +14,7 @@ public class Admissions
     {
         list = new ArrayList<Student>();
     }
-    
+
     public void add(Student std)
     {
         list.add(std);
@@ -28,33 +29,32 @@ public class Admissions
     {
         return stud;
     }
-    
+
     public void searchStudent(String ID)
     {
         // Vars initalization.
         found = false;
         int i = 0;
         int listSize = list.size();
-        
+
         // Loop that keeps going until found or end of the list.
-        while(!found && i < listSize)
+        while (!found && i < listSize)
         {
             //Student stud = list.get(i);
             Student studObjList = list.get(i);
-            
+
             if (studObjList.getIDnumber().equalsIgnoreCase(ID))
             {
                 stud = studObjList;
                 found = true;
                 index = i;
-            } 
-            else
+            } else
             {
                 i++;
-            }                     
+            }
         }
     }
-    
+
     public boolean inList()
     {
         return found;
@@ -65,14 +65,9 @@ public class Admissions
         return index;
     }
 
-   public Student drop(int i)
-   {
-       return list.remove(i);
-   }
+    public Student drop(int i)
+    {
+        return list.remove(i);
+    }
 
-    
-    
-    
-    
-    
 }

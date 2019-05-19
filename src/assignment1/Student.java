@@ -56,7 +56,7 @@ public class Student
             if (i == 0)
             {
                 arrayCounter = arrayCounter + courseArray[i];
-            } else if (courseArray[i] == "")
+            } else if (courseArray[i].isEmpty())
             {
                 // Not including the comma when it is blank. 
             } else
@@ -77,7 +77,7 @@ public class Student
             // If it is space add the course.
             if (courseArray[i].isEmpty())
             {
-                courseArray[i] = course;                
+                courseArray[i] = course;
                 return 0;
             }
         }
@@ -87,7 +87,7 @@ public class Student
     }
 
     public int dropCourse(String course)
-    { 
+    {
         // Going throught the Array.
         for (int i = 0; i < 5; i++)
         {
@@ -108,9 +108,4 @@ public class Student
         this.IDnumber = IDnumber;
     }
 
-   
-
-    
-
-    
 }
