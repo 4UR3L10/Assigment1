@@ -3,8 +3,7 @@ package assignment1;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import javax.swing.JOptionPane;       
-import javax.swing.JPanel; // ?
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
@@ -22,7 +21,8 @@ public class Assignment1
         Date date = new Date();
         
         // Creating Admission object.
-        Admissions admiss = new Admissions();   // Database.
+        Admissions admiss = new Admissions();   // Enrroled Students Database.
+        Admissions dropped = new Admissions();   // Dropped Students Database.
         
         String tempID = "";
         int tempChoice = 0;
@@ -52,35 +52,103 @@ public class Assignment1
             {
                 // Show Students.  // implementationnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
                 case 1:
-                    // Get the List from the class and store in this new list.
-                    ArrayList list = admiss.getList();
-                    
-                    // Var declaration for the loop.
-                    int i = 0;
-                    int length = list.size();                   
-                    String studentString = "";
-                    
-                    // Going as many times as the length of the list.
-                    while (i < length)
+                    // Display Menu options and getting input.
+                    tempChoice = getData.getInt("Select the information that you want to show:\n [1] Currently Enrolled \n [2] Dropped Students \n [3] All Students");
+
+                    switch (tempChoice)
                     {
-                     // Create object student of the list.
-                     Student studObjList = (Student)list.get(i);
-                     
-                     // Setting up the whole string of the student info.
-                      studentString = studentString + "Id number: " + studObjList.getIDnumber() + "\nName: " + studObjList.getName().getFirstName() + ", "
-                      + studObjList.getName().getLastName() + "\n"
-                      + "Address: " + studObjList.getAddress().getStreet() + ", " + studObjList.getAddress().getCity() + ", "
-                      + studObjList.getAddress().getState() + " " + studObjList.getAddress().getZip() + "\nDate: " + dateFormat.format(date)
-                      + "\nCourses: " + studObjList.getCourseArray() + "\n\n";
-                                            
-                      i++;                       
+                        case 1:
+                            // Get the List from the class and store in this new list.
+                            ArrayList list = admiss.getList();
+
+                            // Var declaration for the loop.
+                            int i = 0;
+                            int length = list.size();
+                            String studentString = "";
+
+                            // Going as many times as the length of the list.
+                            while (i < length)
+                            {
+                                // Create object student of the list.
+                                Student studObjList = (Student) list.get(i);
+
+                                // Setting up the whole string of the student info.
+                                studentString = studentString + "Id number: " + studObjList.getIDnumber() + "\nName: " + studObjList.getName().getFirstName() + ", "
+                                        + studObjList.getName().getLastName() + "\n"
+                                        + "Address: " + studObjList.getAddress().getStreet() + ", " + studObjList.getAddress().getCity() + ", "
+                                        + studObjList.getAddress().getState() + " " + studObjList.getAddress().getZip() + "\nDate: " + dateFormat.format(date)
+                                        + "\nCourses: " + studObjList.getCourseArray() + "\n\n";
+
+                                i++;
+                            }
+
+                            // Calling a method to display the info of the student in a scroll pane.
+                            show(studentString, "Active Students", JOptionPane.INFORMATION_MESSAGE);
+                            break;
+
+                        case 2:
+                            // Get the List from the class and store in this new list.
+                            ArrayList dropList = dropped.getList();
+
+                            // Var declaration for the loop.
+                            i = 0;
+                            length = dropList.size();
+                            studentString = "";
+
+                            // Going as many times as the length of the list.
+                            while (i < length)
+                            {
+                                // Create object student of the list.
+                                Student studObjList = (Student) dropList.get(i);
+
+                                // Setting up the whole string of the student info.
+                                studentString = studentString + "Id number: " + studObjList.getIDnumber() + "\nName: " + studObjList.getName().getFirstName() + ", "
+                                        + studObjList.getName().getLastName() + "\n"
+                                        + "Address: " + studObjList.getAddress().getStreet() + ", " + studObjList.getAddress().getCity() + ", "
+                                        + studObjList.getAddress().getState() + " " + studObjList.getAddress().getZip() + "\nDate: " + dateFormat.format(date)
+                                        + "\nCourses: " + studObjList.getCourseArray() + "\n\n";
+
+                                i++;
+                            }
+
+                            // Calling a method to display the info of the student in a scroll pane.
+                            show(studentString, "Students who were dropped", JOptionPane.INFORMATION_MESSAGE);
+                            break;
+                         
+                        case 3:
+                            // Get the List from the class and store in this new list.
+                            ArrayList totalList = new ArrayList();
+                            totalList.addAll(dropped.getList());
+                            totalList.addAll(admiss.getList());
+                            
+                            // Var declaration for the loop.
+                            i = 0;
+                            length = totalList.size();
+                            studentString = "";
+
+                            // Going as many times as the length of the list.
+                            while (i < length)
+                            {
+                                // Create object student of the list.
+                                Student studObjList = (Student) totalList.get(i);
+
+                                // Setting up the whole string of the student info.
+                                studentString = studentString + "Id number: " + studObjList.getIDnumber() + "\nName: " + studObjList.getName().getFirstName() + ", "
+                                        + studObjList.getName().getLastName() + "\n"
+                                        + "Address: " + studObjList.getAddress().getStreet() + ", " + studObjList.getAddress().getCity() + ", "
+                                        + studObjList.getAddress().getState() + " " + studObjList.getAddress().getZip() + "\nDate: " + dateFormat.format(date)
+                                        + "\nCourses: " + studObjList.getCourseArray() + "\n\n";
+
+                                i++;
+                            }
+
+                            // Calling a method to display the info of the student in a scroll pane.
+                            show(studentString, "All students", JOptionPane.INFORMATION_MESSAGE);
+                            break;
                     }
-                    
-                    // Calling a method to display the info of the student in a scroll pane.
-                     show(studentString, "Active Students", JOptionPane.INFORMATION_MESSAGE);                    
-                    
+
                     break;
-                
+
                 // Add Students.
                 case 2:
                     // Creating an Student.
@@ -134,6 +202,7 @@ public class Assignment1
                         // If student was found drop the student and display feedback.
                         Student studentObj = admiss.getStud();
                         int index = admiss.getIndex();
+                        dropped.add(studentObj);  // VERIFYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
                         admiss.drop(index);
                         JOptionPane.showMessageDialog(null, "The student [" + tempID + "] ("+ admiss.getStud().getName().getFirstName() + " " + admiss.getStud().getName().getLastName() + ") have been dropped.");
                     }
